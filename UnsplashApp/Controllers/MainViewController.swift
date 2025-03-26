@@ -58,7 +58,7 @@ final class MainViewController: UIViewController {
         viewModel.imageSelected = { [weak self] imageData in
             guard let self,
                   let image = UIImage(data: imageData) else { return }
-            let detailViewController = ViewControllerFactory.createDetailController(delegate: self, image: image)
+            let detailViewController = ViewControllerFactory.makeDetailController(delegate: self, image: image)
             present(detailViewController, animated: true)
         }
     }

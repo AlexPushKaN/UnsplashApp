@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol ViewControllerFactoryProtocol {
+    static func makeMainController(access key: String) -> UIViewController
+    static func makeDetailController(delegate: CloseDetailControllerDelegate, image: UIImage) -> UIViewController
+}
+
 protocol MainControllerProtocol: AnyObject {
     var inputedText: ((String?) -> Void)? { get set }
 }

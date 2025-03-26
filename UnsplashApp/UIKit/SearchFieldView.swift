@@ -8,6 +8,10 @@
 import UIKit
 
 final class SearchFieldView: UIView {
+    struct Constants {
+        static let placeholder = "Телефоны, яблоки, груши..."
+        static let titleTextButton = "Искать"
+    }
     private var currentText: String = ""
     lazy var searchField: UITextField = {
         let searchIconView = UIImageView(frame: CGRect(origin: CGPoint(x: 8.0, y: 0.0),
@@ -18,7 +22,7 @@ final class SearchFieldView: UIView {
         containerView.addSubview(searchIconView)
         let textField = UITextField(frame: .zero)
         textField.borderStyle = .none
-        textField.placeholder = "Телефоны, яблоки, груши..."
+        textField.placeholder = Constants.placeholder
         textField.leftView = containerView
         textField.leftViewMode = .always
         textField.leftView?.tintColor = .lightGray
@@ -37,7 +41,7 @@ final class SearchFieldView: UIView {
         }
         let button = UIButton(frame: .zero, primaryAction: action)
         var config = UIButton.Configuration.filled()
-        config.title = "Искать"
+        config.title = Constants.titleTextButton
         config.baseBackgroundColor = .red
         config.baseForegroundColor = .white
         config.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)

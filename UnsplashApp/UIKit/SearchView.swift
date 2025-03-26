@@ -7,7 +7,10 @@
 
 import UIKit
 
-final class SearchView: UIView, CommunicationProtocolDelegate {
+final class SearchView: UIView {
+    struct Constants {
+        static let labelText = "К сожалению, поиск не дал результатов"
+    }
     lazy var indicatorLoadingView: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.color = .red
@@ -26,7 +29,7 @@ final class SearchView: UIView, CommunicationProtocolDelegate {
     }()
     private lazy var noResultsLabel: UILabel = {
         let label = UILabel()
-        label.text = "К сожалению, поиск не дал результатов"
+        label.text = Constants.labelText
         label.sizeToFit()
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -71,7 +74,10 @@ final class SearchView: UIView, CommunicationProtocolDelegate {
             indicatorLoadingView.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
-    
+}
+
+//MARK: - CommunicationProtocolDelegate
+extension SearchView: CommunicationProtocolDelegate {
     func updateCollectionView() {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }

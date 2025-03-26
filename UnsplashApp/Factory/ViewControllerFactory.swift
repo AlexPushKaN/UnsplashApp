@@ -7,8 +7,8 @@
 
 import UIKit
 
-final class ViewControllerFactory {
-    static func createMainController(access key: String) -> MainViewController {
+final class ViewControllerFactory: ViewControllerFactoryProtocol {
+    static func makeMainController(access key: String) -> UIViewController {
         let networkService = NetworkService(access: key)
         let viewModel = MainViewModel(service: networkService, countOfLoadImage: 30)
         let view = MainView()
@@ -21,7 +21,7 @@ final class ViewControllerFactory {
         return controller
     }
     
-    static func createDetailController(delegate: CloseDetailControllerDelegate, image: UIImage) -> DetailViewController {
+    static func makeDetailController(delegate: CloseDetailControllerDelegate, image: UIImage) -> UIViewController {
         let view = DetailView(image: image)
         let controller = DetailViewController(view: view)
         controller.delegate = delegate
